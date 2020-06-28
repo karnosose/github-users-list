@@ -54,10 +54,16 @@ class User extends Component {
           </CardContent>
           <CardActions className={classes.actions}>
             <Tooltip title="Edit user">
-              <EditIcon className={classes.editUser} />
+              <EditIcon 
+                className={classes.editUser} 
+                onClick={this.handleEditClick}
+              />
             </Tooltip>
             <Tooltip title="Delete user">
-              <DeleteIcon className={classes.deleteUser} />
+              <DeleteIcon 
+                className={classes.deleteUser} 
+                onClick={this.handleDeleteClick}
+              />
             </Tooltip>
           </CardActions>
         </CardActionArea>
@@ -67,5 +73,14 @@ class User extends Component {
     )
   }
 }
+
+User.propTypes = {
+  classes: PropTypes.object.isRequired,
+  login: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  githubUrl: PropTypes.string.isRequired,
+
+};
+
 
 export default withStyles(styles)(User);

@@ -9,6 +9,7 @@ import User from '../User/User'
 
 import {styles} from './UsersList.style';
 import { withStyles } from '@material-ui/styles';
+import { Typography } from '@material-ui/core';
 
 
 class UsersList extends Component {
@@ -59,6 +60,9 @@ class UsersList extends Component {
 
     return (
       <Container maxWidth="lg">
+        <Typography variant="h3" component="h1" className={classes.pageTitle}>
+          Github users list
+        </Typography>
         <Grid container spacing={6}>
 
         {errorMessage ? (
@@ -87,5 +91,9 @@ class UsersList extends Component {
     );
   }
 }
+
+UsersList.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(UsersList);

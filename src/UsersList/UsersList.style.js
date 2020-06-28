@@ -1,9 +1,7 @@
 export const styles = theme => ({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
+  pageTitle: {
+    margin: '40px 0',
+    textAlign: 'center'
+  }
 })
   

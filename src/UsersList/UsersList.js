@@ -1,29 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'react-uuid';
+
+import Container from '@material-ui/core/Container'
+
+import User from '../User/User'
+
+import {styles} from './UsersList.style';
 import { withStyles } from '@material-ui/styles';
 
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography';
-import {styles} from './UsersList.style';
-
-class User extends Component {
-
-  render() {
-    const {id, login, avatar, githubUrl} = this.props;
-
-    return (
-      <div>
-        
-      </div>
-    )
-  }
-}
 
 class UsersList extends Component {
 
@@ -82,7 +67,8 @@ class UsersList extends Component {
          ) : (
            users.map((user, id) => (
            <div>
-             <User 
+             <User
+              key={uuid()} 
               id={user.id}
               login={user.login}
               avatar={user.avatar_url}

@@ -59,7 +59,7 @@ class UsersList extends Component {
 
     return (
       <Container maxWidth="lg">
-        <Grid container spacing={3}>
+        <Grid container spacing={6}>
 
         {errorMessage ? (
           <p>f{errorMessage}</p>

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
 import {styles} from './User.style';
@@ -21,32 +23,30 @@ class User extends Component {
     const { classes } = this.props;
 
     return (
-        <Card className={classes.root}>
+        <Grid item xs={6} sm={3}>
+
+
+        <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
-            className={classes.media}
+            component="img"
+            alt="avatar"
             image={avatar}
-            title="Contemplative Reptile"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              Lizard
+              {login}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
-            </Typography>
+            <Link href={githubUrl} target='_blank' color="inherit">
+                View github account
+            </Link>
           </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
+          <CardActions>
         </CardActions>
+        </CardActionArea>
+        
       </Card>
+      </Grid>
     )
   }
 }

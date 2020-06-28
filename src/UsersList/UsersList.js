@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
+import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 
 import User from '../User/User'
@@ -58,6 +59,8 @@ class UsersList extends Component {
 
     return (
       <Container maxWidth="lg">
+        <Grid container spacing={3}>
+
         {errorMessage ? (
           <p>f{errorMessage}</p>
          ) : isEmpty ? (
@@ -65,20 +68,21 @@ class UsersList extends Component {
          ) : isLoading ? (
            <p>...</p>
          ) : (
+
            users.map((user, id) => (
-           <div>
              <User
               key={uuid()} 
               id={user.id}
               login={user.login}
               avatar={user.avatar_url}
               githubUrl={user.html_url}
-             />
-           </div>
-           
+             />           
            ))
          )
+
         }
+        </Grid>
+
       </Container>
     );
   }

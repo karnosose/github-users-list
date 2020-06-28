@@ -1,28 +1,55 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
+class UsersList extends Component {
+
+  state = {
+    isLoading: false,
+    isEmpty: false,
+    errorMessage: '',
+    users: []
+  }
+
+  componentDidMount() {
+    this.fetchGithubUsersList();
+  }
+
+  fetchGithubUsersList = () => {
+    fetch('https://api.github.com/usersjjh')
+    .then(res => {
+      if (res.status === 404) {
+        throw new Error("No Data");
+      }
+      return res;
+    })
+    .then(users => users.json())
+    .then(users => {
+      this.setState({
+        users: users,
+        isEmpty:users.length === 0,
+        isLoading: false,
+        errorMessage: [],
+
+      })
+    })
+    .catch(err =>
+      this.setState({
+        isLoading: false,
+        errorMessage: err.message,
+        users: []
+      })
+    );
+
+    
+
+
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+    <div>{this.state.errorText}</div>
     );
   }
 }
 
-export default App;
+export default UsersList;

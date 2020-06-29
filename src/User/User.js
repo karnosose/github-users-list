@@ -20,6 +20,10 @@ import { withStyles } from '@material-ui/styles';
 
 class User extends Component {
 
+  handleDeleteClick = () => {
+
+  }
+
   render() {
     const {login, avatar, githubUrl, classes} = this.props;
 
@@ -43,7 +47,7 @@ class User extends Component {
               {login}
             </Typography>
             <Link 
-              class={classes.githubUrl}
+              className={classes.githubUrl}
               href={githubUrl} 
               target='_blank' 
               color="inherit"

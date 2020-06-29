@@ -4,12 +4,12 @@ import uuid from 'react-uuid';
 
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography';
 
-import User from '../User/User'
+import EditableUser from '../EditableUser/EditableUser'
 
 import {styles} from './UsersList.style';
 import { withStyles } from '@material-ui/styles';
-import { Typography } from '@material-ui/core';
 
 
 class UsersList extends Component {
@@ -74,7 +74,7 @@ class UsersList extends Component {
          ) : (
 
            users.map((user, id) => (
-             <User
+             <EditableUser
               key={uuid()} 
               id={user.id}
               login={user.login}

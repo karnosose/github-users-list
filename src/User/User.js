@@ -20,17 +20,12 @@ import { withStyles } from '@material-ui/styles';
 
 class User extends Component {
 
-  handleDeleteClick = () => {
-
-  }
-
   render() {
-    const {login, avatar, githubUrl, classes} = this.props;
+    const {login, avatar, githubUrl, classes, onEditClick, onDeleteClick} = this.props;
 
     return (
       <Grid item xs={6} sm={3}>
         <Card className={classes.card}>
-        <CardActionArea>
           <CardMedia
             className={classes.avatar}
             component="img"
@@ -60,17 +55,16 @@ class User extends Component {
             <Tooltip title="Edit user">
               <EditIcon 
                 className={classes.editUser} 
-                onClick={this.handleEditClick}
+                onClick={onEditClick}
               />
             </Tooltip>
             <Tooltip title="Delete user">
               <DeleteIcon 
                 className={classes.deleteUser} 
-                onClick={this.handleDeleteClick}
+                onClick={onDeleteClick}
               />
             </Tooltip>
           </CardActions>
-        </CardActionArea>
         
       </Card>
     </Grid>

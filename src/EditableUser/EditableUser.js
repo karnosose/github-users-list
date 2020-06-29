@@ -14,6 +14,10 @@ class EditableUser extends Component {
       editFormOpen: false,
   };
 
+  handleEdit = () => {
+    this.setState({editFormOpen: true})
+  }
+
   render() {
 
     const {id, login, avatar, githubUrl} = this.props
@@ -36,6 +40,7 @@ class EditableUser extends Component {
           login={login}
           avatar={avatar}
           githubUrl={githubUrl}
+          onEditClick={this.handleEdit}
         />
       );
     }

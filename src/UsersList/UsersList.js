@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography';
@@ -21,8 +22,18 @@ class UsersList extends Component {
     users: []
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+
     this.fetchGithubUsersList();
+  //  const users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : await this.fetchGithubUsersList();
+  //   this.setState({
+  //     users: users,
+  //     isEmpty: users.length === 0,
+  //     isLoading: false,
+  //     errorMessage: '',
+  //   })
+    
+
   }
 
   fetchGithubUsersList = () => {
@@ -63,6 +74,7 @@ class UsersList extends Component {
   }
 
   handleFormSubmit = (attrs) => {
+    
     this.setState({
       users: this.state.users.map((user) => {
         if (user.id === attrs.id) {
@@ -103,7 +115,9 @@ class UsersList extends Component {
          ) : isEmpty ? (
            <p>No Data</p>
          ) : isLoading ? (
-           <p>...</p>
+          <div className={classes.loading}>
+            <CircularProgress />
+          </div>
          ) : (
 
           users.map((user, id) => (

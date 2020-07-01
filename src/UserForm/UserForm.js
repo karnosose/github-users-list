@@ -34,8 +34,16 @@ class UserForm extends Component {
     this.setState({ githubUrl: e.target.value });
   };
 
+  handleFormSubmit = () => {
+    this.props.onFormSubmit({
+      id: this.props.id,
+      login: this.state.login,
+      githubUrl: this.state.githubUrl,
+    });
+  }
+
   render() {
-    const {login, avatar, githubUrl, classes, onEditClick, onFormClose} = this.props;
+    const {avatar, classes, onFormClose} = this.props;
 
     return (
       <Grid item xs={6} sm={3}>
@@ -69,7 +77,11 @@ class UserForm extends Component {
           </CardContent>
           </CardHeader>
           <CardActions className={classes.actions}>
-            <Button variant="contained" color="default">
+            <Button 
+              variant="contained" 
+              color="default"
+              onClick={this.handleFormSubmit}
+            >
               Update
             </Button>
             <Button 

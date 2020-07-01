@@ -35,6 +35,17 @@ class UsersList extends Component {
     })
     .then(users => users.json())
     .then(users => {
+      users = users.map(user => {
+        return  {
+          id: user.id,
+          login: user.login,
+          githubUrl: user.html_url,
+          avatar: user.avatar_url,
+        }
+      })
+      return users
+    })
+    .then(users => {
       this.setState({
         users: users,
         isEmpty: users.length === 0,
@@ -55,6 +66,7 @@ class UsersList extends Component {
     this.setState({
       users: this.state.users.map((user) => {
         if (user.id === attrs.id) {
+          console.log(attrs.githubUrl)
           return Object.assign({}, user, {
             login: attrs.login,
             githubUrl: attrs.githubUrl,
@@ -64,6 +76,7 @@ class UsersList extends Component {
         }
       }),
     });
+    console.log(this.state)
   };
 
   render() {
@@ -87,16 +100,16 @@ class UsersList extends Component {
            <p>...</p>
          ) : (
 
-           users.map((user, id) => (
-             <EditableUser
+          users.map((user, id) => (
+            <EditableUser
               key={uuid()} 
               id={user.id}
               login={user.login}
-              avatar={user.avatar_url}
-              githubUrl={user.html_url}
+              avatar={user.avatar}
+              githubUrl={user.githubUrl}
               onFormSubmit={this.handleFormSubmit}
 
-             />           
+            />           
            ))
          )
 

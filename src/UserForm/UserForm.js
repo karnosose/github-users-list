@@ -21,9 +21,21 @@ import { withStyles } from '@material-ui/styles';
 
 
 class UserForm extends Component {
+  state = {
+    login: this.props.login || '',
+    githubUrl: this.props.githubUrl || '',
+  };
+
+  handleLoginChange = (e) => {
+    this.setState({ login: e.target.value });
+  };
+
+  handleGithubUrlChange = (e) => {
+    this.setState({ githubUrl: e.target.value });
+  };
 
   render() {
-    const {login, avatar, githubUrl, classes, onEditClick, onDeleteClick} = this.props;
+    const {login, avatar, githubUrl, classes, onEditClick, onFormClose} = this.props;
 
     return (
       <Grid item xs={6} sm={3}>
@@ -39,7 +51,7 @@ class UserForm extends Component {
             <form className={classes.root} noValidate autoComplete="off">
               <TextField 
                 margin='dense'
-                value={login} 
+                value={this.state.login} 
                 id="outlined-basic" 
                 label="login" 
                 variant="outlined" 
@@ -47,7 +59,7 @@ class UserForm extends Component {
               />
                <TextField 
                 margin='dense'
-                value={login} 
+                value={this.state.githubUrl} 
                 id="outlined-basic" 
                 label="githubUrl" 
                 variant="outlined" 
@@ -60,7 +72,11 @@ class UserForm extends Component {
             <Button variant="contained" color="default">
               Update
             </Button>
-            <Button variant="contained" color="default">
+            <Button 
+              variant="contained" 
+              color="default"
+              onClick={onFormClose}
+            >
               Cancel
             </Button>
           </CardActions>

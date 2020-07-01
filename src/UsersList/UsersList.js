@@ -51,6 +51,20 @@ class UsersList extends Component {
     );
   }
 
+  handleFormSubmit = (attrs) => {
+    this.setState({
+      users: this.state.users.map((user) => {
+        if (user.id === attrs.id) {
+          return Object.assign({}, user, {
+            login: attrs.login,
+            githubUrl: attrs.githubUrl,
+          });
+        } else {
+          return user;
+        }
+      }),
+    });
+  };
 
   render() {
     console.log(this.state)
@@ -80,6 +94,8 @@ class UsersList extends Component {
               login={user.login}
               avatar={user.avatar_url}
               githubUrl={user.html_url}
+              onFormSubmit={this.handleFormSubmit}
+
              />           
            ))
          )

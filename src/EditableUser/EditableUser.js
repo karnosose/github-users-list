@@ -18,6 +18,15 @@ class EditableUser extends Component {
     this.setState({editFormOpen: true})
   }
 
+  handleFormClose = () => {
+    this.setState({ editFormOpen: false });
+  };
+
+  handleSubmit = (user) => {
+    this.props.onFormSubmit(user);
+    this.setState({ editFormOpen: false });
+  };
+
   render() {
 
     const {id, login, avatar, githubUrl} = this.props
@@ -30,6 +39,8 @@ class EditableUser extends Component {
           login={login}
           avatar={avatar}
           githubUrl={githubUrl}
+          onFormSubmit={this.handleSubmit}
+          onFormClose={this.handleFormClose}
         />
       );
     } else {

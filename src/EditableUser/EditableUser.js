@@ -27,6 +27,10 @@ class EditableUser extends Component {
     this.setState({ editFormOpen: false });
   };
 
+  handleUserDelete = (user) => {
+    this.props.deleteUser(user);
+  }
+
   render() {
 
     const {id, login, avatar, githubUrl} = this.props
@@ -52,6 +56,7 @@ class EditableUser extends Component {
           avatar={avatar}
           githubUrl={githubUrl}
           onEditClick={this.handleEdit}
+          onDeleteClick={this.handleUserDelete}
         />
       );
     }

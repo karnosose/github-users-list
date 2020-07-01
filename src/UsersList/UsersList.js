@@ -66,7 +66,6 @@ class UsersList extends Component {
     this.setState({
       users: this.state.users.map((user) => {
         if (user.id === attrs.id) {
-          console.log(attrs.githubUrl)
           return Object.assign({}, user, {
             login: attrs.login,
             githubUrl: attrs.githubUrl,
@@ -76,8 +75,15 @@ class UsersList extends Component {
         }
       }),
     });
-    console.log(this.state)
   };
+
+  deleteUser = (userId) => {
+    const newUsers = this.state.users.filter(user => user.id !== userId);
+    this.setState({
+      ...this.state,
+      users: newUsers,
+    })
+  }
 
   render() {
     console.log(this.state)
@@ -108,11 +114,11 @@ class UsersList extends Component {
               avatar={user.avatar}
               githubUrl={user.githubUrl}
               onFormSubmit={this.handleFormSubmit}
+              deleteUser={this.deleteUser}
 
             />           
            ))
          )
-
         }
         </Grid>
 

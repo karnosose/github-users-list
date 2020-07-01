@@ -21,7 +21,7 @@ import { withStyles } from '@material-ui/styles';
 class User extends Component {
 
   render() {
-    const {login, avatar, githubUrl, classes, onEditClick, onDeleteClick} = this.props;
+    const {id, login, avatar, githubUrl, classes, onEditClick, onDeleteClick} = this.props;
 
     return (
       <Grid item xs={6} sm={3}>
@@ -61,7 +61,7 @@ class User extends Component {
             <Tooltip title="Delete user">
               <DeleteIcon 
                 className={classes.deleteUser} 
-                onClick={onDeleteClick}
+                onClick={() => onDeleteClick(id)}
               />
             </Tooltip>
           </CardActions>

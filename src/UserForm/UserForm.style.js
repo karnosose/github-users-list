@@ -26,11 +26,16 @@ export const styles = theme => ({
           background: '#275c68'
       }
     },
+    userForm: {
+      marginBottom:0,
+      paddingBottom:'0!important',
+    },
     login: {
       marginBottom: '1em'
     },
     actions: {
       justifyContent: 'center',
+      marginBottom:15
     },
     deleteUser: {
       color: '#e51717',

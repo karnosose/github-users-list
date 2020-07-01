@@ -5,10 +5,11 @@ export const styles = theme => ({
   },
   loading: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
     margin: '200px auto'
   },
+  noData: {
+    display: 'flex',
+    margin: '200px auto'
+  }
 })
   

@@ -49,8 +49,8 @@ class UserForm extends Component {
             alt="avatar"
             image={avatar}
           />
-          <CardContent>
-            <form className={classes.root} noValidate autoComplete="off">
+          <CardContent className={classes.userForm}>
+            <form noValidate autoComplete="off">
               <TextField 
                 margin='dense'
                 value={this.state.userName} 

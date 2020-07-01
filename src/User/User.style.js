@@ -31,12 +31,19 @@ export const styles = theme => ({
   },
   actions: {
     justifyContent: 'center',
+    margin:10,
   },
   deleteUser: {
     color: '#e51717',
+    '&:hover': {
+      cursor: 'pointer',
+    }
   },
   editUser: {
     color: '#673AB7',
+    '&:hover': {
+      cursor: 'pointer',
+    }
   }
 })
     

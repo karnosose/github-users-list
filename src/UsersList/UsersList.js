@@ -119,13 +119,16 @@ class UsersList extends Component {
         <Grid container spacing={6}>
 
         {errorMessage ? (
-          <p>{errorMessage}</p>
+          <div className={classes.noData}>
+            {errorMessage}
+          </div>
          ) : isEmpty ? (
-           <p>No Data</p>
+           <div classname={classes.noData}>
+             No data
+           </div>
          ) : isLoading ? (
           <div className={classes.loading}>
-            {/* <CircularProgress /> */}
-            ...
+            <CircularProgress />
           </div>
          ) : (
 

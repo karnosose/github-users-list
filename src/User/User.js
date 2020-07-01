@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -65,7 +64,6 @@ class User extends Component {
               />
             </Tooltip>
           </CardActions>
-        
       </Card>
     </Grid>
     )
@@ -77,7 +75,8 @@ User.propTypes = {
   userName: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
   githubUrl: PropTypes.string.isRequired,
-
+  onEditClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired
 };
 
 

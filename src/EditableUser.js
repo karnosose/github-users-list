@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
-import User from '../User/User';
-import UserForm from '../UserForm/UserForm'
-
-import {styles} from './EditableUser.style';
-import { withStyles } from '@material-ui/styles';
-
+import User from './User/User';
+import UserForm from './UserForm/UserForm'
 
 class EditableUser extends Component {
   state = {
@@ -64,7 +60,10 @@ class EditableUser extends Component {
 }
   
 EditableUser.propTypes = {
+  userName: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  githubUrl: PropTypes.string.isRequired, 
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(EditableUser);
+export default EditableUser;

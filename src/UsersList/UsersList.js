@@ -23,17 +23,13 @@ class UsersList extends Component {
   }
 
   async componentDidMount() {
-   const users = await this.getUsers();
-   console.log('dd', users);
-    
+    const users = await this.getUsers();    
     this.setState({
       users: users,
       isEmpty: users.length === 0,
       isLoading: false,
       errorMessage: '',
     })
-    
-
   }
 
   async fetchGithubUsersList() {
@@ -89,30 +85,25 @@ class UsersList extends Component {
       } 
       return user;
     })
-
-    localStorage.setItem('users', JSON.stringify(newUsers))
-    this.setState({
-      ...this.state,
-      users: newUsers
-    });
+    this.updateData(newUsers);
   };
 
   deleteUser = (userId) => {
     const newUsers = this.state.users.filter(user => user.id !== userId);
-    localStorage.setItem('users', JSON.stringify(newUsers));
-    this.setState({
-      ...this.state,
-      users: newUsers,
-    })
+    this.updateData(newUsers);
   };
 
   async resetUsers () {
-    const users = await this.fetchGithubUsersList()
-    localStorage.setItem(('users'), JSON.stringify(users));
+    const allUsers = await this.fetchGithubUsersList()
+    this.updateData(allUsers);
+  }
+
+  updateData = users => {
+    localStorage.setItem('users', JSON.stringify(users))
     this.setState({
       ...this.state,
-      users
-    })
+      users: users
+    });
   }
 
   render() {

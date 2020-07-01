@@ -21,7 +21,7 @@ import { withStyles } from '@material-ui/styles';
 class User extends Component {
 
   render() {
-    const {id, login, avatar, githubUrl, classes, onEditClick, onDeleteClick} = this.props;
+    const {id, userName, avatar, githubUrl, classes, onEditClick, onDeleteClick} = this.props;
 
     return (
       <Grid item xs={6} sm={3}>
@@ -39,7 +39,7 @@ class User extends Component {
               component="h2"
               className={classes.login}
             >
-              {login}
+              {userName}
             </Typography>
             <Link 
               className={classes.githubUrl}
@@ -74,7 +74,7 @@ class User extends Component {
 
 User.propTypes = {
   classes: PropTypes.object.isRequired,
-  login: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
   githubUrl: PropTypes.string.isRequired,
 

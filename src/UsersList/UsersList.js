@@ -14,7 +14,6 @@ import { withStyles } from '@material-ui/styles';
 
 
 class UsersList extends Component {
-
   state = {
     isLoading: true,
     isEmpty: false,
@@ -23,21 +22,21 @@ class UsersList extends Component {
   }
 
   async componentDidMount() {
-
-    this.fetchGithubUsersList();
-  //  const users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : await this.fetchGithubUsersList();
-  //   this.setState({
-  //     users: users,
-  //     isEmpty: users.length === 0,
-  //     isLoading: false,
-  //     errorMessage: '',
-  //   })
+   const users = await this.getUsers();
+   console.log('dd', users);
+    
+    this.setState({
+      users: users,
+      isEmpty: users.length === 0,
+      isLoading: false,
+      errorMessage: '',
+    })
     
 
   }
 
-  fetchGithubUsersList = () => {
-    fetch('https://api.github.com/users')
+   async fetchGithubUsersList() {
+    const usersList = await fetch('https://api.github.com/users')
     .then(res => {
       if (res.status === 404) {
         throw new Error("No Data");
@@ -49,21 +48,13 @@ class UsersList extends Component {
       users = users.map(user => {
         return  {
           id: user.id,
-          login: user.login,
+          userName: user.login,
           githubUrl: user.html_url,
           avatar: user.avatar_url,
         }
       })
       return users
-    })
-    .then(users => {
-      this.setState({
-        users: users,
-        isEmpty: users.length === 0,
-        isLoading: false,
-        errorMessage: '',
-      })
-    })
+    })    
     .catch(err =>
       this.setState({
         isLoading: false,
@@ -71,6 +62,22 @@ class UsersList extends Component {
         users: []
       })
     );
+
+    return usersList;
+  }
+
+  async getUsers () {
+    let users = localStorage.getItem('users');
+
+    if(users) {
+      users = JSON.parse(localStorage.getItem('users'));
+
+    } else {
+      users = await this.fetchGithubUsersList()
+      localStorage.setItem(('users'), JSON.stringify(users));
+    }
+    
+    return users;
   }
 
   handleFormSubmit = (attrs) => {
@@ -79,7 +86,7 @@ class UsersList extends Component {
       users: this.state.users.map((user) => {
         if (user.id === attrs.id) {
           return Object.assign({}, user, {
-            login: attrs.login,
+            userName: attrs.userName,
             githubUrl: attrs.githubUrl,
           });
         } else {
@@ -102,7 +109,7 @@ class UsersList extends Component {
 
     const {isEmpty, isLoading, errorMessage, users} = this.state;
     const { classes } = this.props;
-
+    console.log(10,users)
     return (
       <Container maxWidth="lg">
         <Typography variant="h3" component="h1" className={classes.pageTitle}>
@@ -111,12 +118,13 @@ class UsersList extends Component {
         <Grid container spacing={6}>
 
         {errorMessage ? (
-          <p>f{errorMessage}</p>
+          <p>{errorMessage}</p>
          ) : isEmpty ? (
            <p>No Data</p>
          ) : isLoading ? (
           <div className={classes.loading}>
-            <CircularProgress />
+            {/* <CircularProgress /> */}
+            ...
           </div>
          ) : (
 
@@ -124,7 +132,7 @@ class UsersList extends Component {
             <EditableUser
               key={uuid()} 
               id={user.id}
-              login={user.login}
+              userName={user.userName}
               avatar={user.avatar}
               githubUrl={user.githubUrl}
               onFormSubmit={this.handleFormSubmit}

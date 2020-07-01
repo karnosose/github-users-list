@@ -33,14 +33,14 @@ class EditableUser extends Component {
 
   render() {
 
-    const {id, login, avatar, githubUrl} = this.props
+    const {id, userName, avatar, githubUrl} = this.props
 
     if (this.state.editFormOpen) {
       return (
         <UserForm
           key={uuid()} 
           id={id}
-          login={login}
+          userName={userName}
           avatar={avatar}
           githubUrl={githubUrl}
           onFormSubmit={this.handleSubmit}
@@ -52,7 +52,7 @@ class EditableUser extends Component {
         <User
           key={uuid()} 
           id={id}
-          login={login}
+          userName={userName}
           avatar={avatar}
           githubUrl={githubUrl}
           onEditClick={this.handleEdit}

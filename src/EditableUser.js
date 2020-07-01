@@ -63,7 +63,6 @@ EditableUser.propTypes = {
   userName: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
   githubUrl: PropTypes.string.isRequired, 
-  classes: PropTypes.object.isRequired,
 };
 
 export default EditableUser;

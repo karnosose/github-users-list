@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
+import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
@@ -113,9 +114,19 @@ class UsersList extends Component {
     console.log(10,users)
     return (
       <Container maxWidth="lg">
-        <Typography variant="h3" component="h1" className={classes.pageTitle}>
-          Github users list
-        </Typography>
+        <div className={classes.header}>
+          <Typography variant="h3" component="h1" className={classes.pageTitle}>
+            Github users list
+          </Typography>
+          <Button 
+            variant="contained" 
+            color="primary"
+            className={classes.resetUsers}
+          >
+             Reset users
+          </Button>
+        </div>
+        
         <Grid container spacing={6}>
 
         {errorMessage ? (

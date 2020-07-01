@@ -81,23 +81,24 @@ class UsersList extends Component {
   }
 
   handleFormSubmit = (attrs) => {
-    
+    const newUsers = this.state.users.map(user => {
+      if (user.id === attrs.id) {
+        user.userName = attrs.userName;
+        user.githubUrl = attrs.githubUrl;
+      } 
+      return user;
+    })
+
+    localStorage.setItem('users', JSON.stringify(newUsers))
     this.setState({
-      users: this.state.users.map((user) => {
-        if (user.id === attrs.id) {
-          return Object.assign({}, user, {
-            userName: attrs.userName,
-            githubUrl: attrs.githubUrl,
-          });
-        } else {
-          return user;
-        }
-      }),
+      ...this.state,
+      users: newUsers
     });
   };
 
   deleteUser = (userId) => {
     const newUsers = this.state.users.filter(user => user.id !== userId);
+    localStorage.setItem('users', JSON.stringify(newUsers));
     this.setState({
       ...this.state,
       users: newUsers,

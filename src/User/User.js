@@ -23,7 +23,7 @@ class User extends Component {
     const {id, userName, avatar, githubUrl, classes, onEditClick, onDeleteClick} = this.props;
 
     return (
-      <Grid item xs={6} sm={3}>
+      <Grid item xs={12} sm={4}>
         <Card className={classes.card}>
           <CardMedia
             className={classes.avatar}

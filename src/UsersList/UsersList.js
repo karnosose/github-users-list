@@ -36,7 +36,7 @@ class UsersList extends Component {
 
   }
 
-   async fetchGithubUsersList() {
+  async fetchGithubUsersList() {
     const usersList = await fetch('https://api.github.com/users')
     .then(res => {
       if (res.status === 404) {
@@ -63,7 +63,7 @@ class UsersList extends Component {
         users: []
       })
     );
-
+  
     return usersList;
   }
 
@@ -104,14 +104,22 @@ class UsersList extends Component {
       ...this.state,
       users: newUsers,
     })
+  };
+
+  async resetUsers () {
+    const users = await this.fetchGithubUsersList()
+    localStorage.setItem(('users'), JSON.stringify(users));
+    this.setState({
+      ...this.state,
+      users
+    })
   }
 
   render() {
-    console.log(this.state)
 
     const {isEmpty, isLoading, errorMessage, users} = this.state;
     const { classes } = this.props;
-    console.log(10,users)
+
     return (
       <Container maxWidth="lg">
         <div className={classes.header}>
@@ -122,6 +130,7 @@ class UsersList extends Component {
             variant="contained" 
             color="primary"
             className={classes.resetUsers}
+            onClick={() => this.resetUsers()}
           >
              Reset users
           </Button>
